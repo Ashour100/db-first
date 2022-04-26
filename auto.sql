@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 26, 2022 at 02:13 PM
+-- Generation Time: Apr 26, 2022 at 02:23 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.28
 
@@ -39,7 +39,8 @@ CREATE TABLE `auto` (
   `Cambio` varchar(10) NOT NULL,
   `Iva_esposta` varchar(10) NOT NULL,
   `Km` int(11) NOT NULL,
-  `Immatricolazione` date NOT NULL
+  `Immatricolazione` date NOT NULL,
+  `CF_proprietario_o` varchar(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -50,7 +51,18 @@ CREATE TABLE `auto` (
 -- Indexes for table `auto`
 --
 ALTER TABLE `auto`
-  ADD PRIMARY KEY (`Codice_veicolo`);
+  ADD PRIMARY KEY (`Codice_veicolo`),
+  ADD KEY `CF_proprietario_o` (`CF_proprietario_o`);
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `auto`
+--
+ALTER TABLE `auto`
+  ADD CONSTRAINT `auto_ibfk_1` FOREIGN KEY (`CF_proprietario_o`) REFERENCES `proprietario_originale` (`Codice Fiscale`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
